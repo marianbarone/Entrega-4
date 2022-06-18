@@ -1,28 +1,30 @@
 import express from 'express'
 const app = express()
-const puerto = 8080
-import rutas from './routes'
+const port = 8080
+import routes from './api/movies.js'
 import path from 'path'
+import { fileURLToPath } from 'url';
 
-// import multer from 'multer'
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+//import multer from 'multer'
 
 //Configuracion req.body
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/api/movies', routes)
+app.use('/', routes)
 
 app.use('/index.html', express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-    res.sendFile(_dirname + '/index.html');
-});
+// app.get('/', function (req, res) {
+//     res.sendFile(_dirname + '/index.html');
+// });
 
-app.listen(puerto, (err) => {
+app.listen(port, (err) => {
     if (err) {
         console.log(`Se produjo un error al iniciar el servidor ${err}`)
     } else {
-        console.log(`El servidor esta escuchando el puerto puerto $(port)`)
+        console.log(`El servidor esta escuchando el puerto ${port}`)
     }
 })
 

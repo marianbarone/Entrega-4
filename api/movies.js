@@ -1,20 +1,16 @@
-import {Router} from 'express'
+
+import { Router } from 'express'
 const router = Router()
+import { getAll, addMovie, getById, updateMovie, deleteById } from '../controllers/controllers.js'
 
-let movies = []
+router.get('/movies', getAll)
 
-//getAll
+router.post('/movies', addMovie)
 
-export const getAll = (req, res) => {
-    if (movies.length > 0) {
-        res.status(200).json(movies)
-    } else {
-        res.status(204).send('No existen películas')
-    }
-}
+router.get('/movies:id', getById)
 
-//add
+router.put('/movies:id', updateMovie)
 
-export const addMovie = (req, res) => {
-    
-}
+router.delete('/movies', deleteById)
+
+export default router;
