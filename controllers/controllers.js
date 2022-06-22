@@ -13,15 +13,9 @@ export const getAll = (req, res) => {
 //add
 
 export const addMovie = (req, res) => {
+
     let movieId = 0
     const { title, price, thumbnail } = req.body
-    if (movies.length == 0) {
-        movieId = 1
-    } else {
-        movies.forEach((movie, i) => {
-            movie.id = i + 1;
-        });
-    }
 
     let newMovie = {
         id: movieId,
@@ -31,7 +25,22 @@ export const addMovie = (req, res) => {
     }
 
     movies.push(newMovie)
-    res.status(201).json(movies)
+
+    if (movies.length === 0) {
+        console.log('length', movies.length)
+        movieId = 1
+    } else {
+        movies.forEach((movie, i) => {
+            movie.id = i + 1;
+            movieId = movie.id
+            console.log("id", movie.id)
+            console.log("movieId", movieId)
+        });
+    }
+
+    res.status(200).json(movies)
+    console.log('movie', newMovie)
+    console.log("array", movies)
 
 }
 

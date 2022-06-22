@@ -7,9 +7,9 @@ router.get('/movies', getAll)
 
 router.post('/movies', addMovie)
 
-router.get('/movies:id', getById)
+router.get('/movies/:id', getById)
 
-router.put('/movies:id', updateMovie)
+router.put('/movies/:id', updateMovie)
 
 router.delete('/movies', deleteById)
 
